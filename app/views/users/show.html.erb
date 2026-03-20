@@ -70,7 +70,12 @@
     <% if ra.image.attached? %>
       <%= image_tag ra.image.variant(resize_to_fill: [100, 100]).processed, class: "temp-image" %>
     <% end %>
-    <%= link_to ra.name, tempshow_path(ra, user_id: @user2.id, id: ra.temp_id), class: "temp-link" %>
+
+    <% if current_user %>
+      <%= link_to ra.name, tempshow_path(ra, user_id: @user2.id, id: ra.temp_id), class: "temp-link" %>
+    <% else %>
+      <%= link_to ra.name, login_path, class: "temp-link" %>
+    <% end %>
   </li>
   <hr>
 <% end %>
