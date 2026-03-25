@@ -9,7 +9,7 @@ class MetamonsController < ApplicationController
     @metamon.user_id = current_user.id
     @metamon.temp_id = current_user.doingtempid
 
-    tempkate = Temp.where(user_id: current_user.id, temp_id: current_user.doingtempid).first
+    tempkate = Temp.where(user_id: current_user.doingtempuserid, temp_id: current_user.doingtempid).first
     @metamon.tempuser_id = current_user.doingtempuserid
     @metamon.kategori_id = tempkate.kategori_id
     @metamon.truemetamonid = current_user.ifnewmeta
@@ -18,7 +18,7 @@ class MetamonsController < ApplicationController
       current_user.increment(:ifnewmeta)
       current_user.update_column(:ifnewmeta, current_user.ifnewmeta)
       current_user.update_column(:metating, false)
-      flash[:success] = 'Welcome to the Sample App!'
+      flash[:success] = '完成しました'
       redirect_to user_path(current_user)
     else
       @metamol = current_user.metamons

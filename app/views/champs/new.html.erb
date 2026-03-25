@@ -14,15 +14,24 @@
   </div>
 </div>
 
-<div class="d-flex flex-row flex-wrap">
+<div>
   <% @champl.each do |champ| %>
-    <div class="d-inline-flex align-items-center mb-3 mr-3">
+    <div style="display: inline-block; width: 140px; margin: 12px; text-align: center; vertical-align: top;">
       <% if champ.image.attached? %>
-        <%= image_tag champ.image.variant(resize_to_fill: [100, 100]).processed, class: "mr-3" %>
+        <%= image_tag champ.image.variant(resize_to_fill: [100, 100]).processed %>
       <% end %>
-      <span><%= champ.name %></span>
-      <span class="ml-2"><%= champ.champid %></span>
-      <%= button_to "Delete", champ_path(champ), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger ml-2" %>
+
+      <div style="margin-top: 8px;">
+        <span><%= champ.name %></span>
+        <span style="margin-left: 8px;"><%= champ.champid %></span>
+      </div>
+
+      <div style="margin-top: 8px;">
+        <%= button_to "Delete", champ_path(champ),
+            method: :delete,
+            data: { confirm: "Are you sure?" },
+            class: "btn btn-danger btn-sm" %>
+      </div>
     </div>
   <% end %>
 </div>
@@ -39,14 +48,23 @@
 <% end %>
 
 
-<div class="d-flex flex-row flex-wrap">
+<div>
   <% @joukyoul.each do |joukyou| %>
-    <div class="d-inline-flex align-items-center mb-3 mr-3">
+    <div style="display: inline-block; width: 140px; margin: 12px; text-align: center; vertical-align: top;">
       <% if joukyou.image.attached? %>
-        <%= image_tag joukyou.image.variant(resize_to_fill: [100, 100]).processed, class: "mr-3" %>
+        <%= image_tag joukyou.image.variant(resize_to_fill: [100, 100]).processed %>
       <% end %>
-      <span><%= joukyou.name %></span>
-      <%= button_to "Delete", joukyou_path(joukyou), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger ml-2" %>
+
+      <div style="margin-top: 8px;">
+        <span><%= joukyou.name %></span>
+      </div>
+
+      <div style="margin-top: 8px;">
+        <%= button_to "Delete", joukyou_path(joukyou),
+            method: :delete,
+            data: { confirm: "Are you sure?" },
+            class: "btn btn-danger btn-sm" %>
+      </div>
     </div>
   <% end %>
 </div>
