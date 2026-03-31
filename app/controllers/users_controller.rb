@@ -49,6 +49,10 @@ class UsersController < ApplicationController
   def edit
     @user = User.all
     @user2 =  User.find(params[:id])
+    unless current_user && current_user.id == @user2.id
+      redirect_to root_path, alert: "権限がありません"
+      return
+    end
     @metamon2 = @user2.metamons
     @usertemp=@user2.temps
   end
